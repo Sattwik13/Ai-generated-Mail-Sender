@@ -12,7 +12,7 @@ export default function EmailForm() {
     if (!prompt) return alert("Please enter a prompt");
     setLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:5000/api/generate-email", { prompt });
+      const { data } = await axios.post("https://ai-generated-mail-sender.onrender.com/api/generate-email", { prompt });
       setEmailContent(data.emailContent);
     } catch {
       alert("Failed to generate email");
@@ -23,7 +23,7 @@ export default function EmailForm() {
   const sendEmail = async () => {
     if (!recipients || !subject || !emailContent) return alert("Fill all fields");
     try {
-      await axios.post("http://localhost:5000/api/send-email", {
+      await axios.post("https://ai-generated-mail-sender.onrender.com/api/send-email", {
         recipients,
         subject,
         body: emailContent
